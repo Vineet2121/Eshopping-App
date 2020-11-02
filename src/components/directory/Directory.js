@@ -1,8 +1,8 @@
 import React from 'react';
 
-import MenuItem from '../menu-item/menu-item.component';
+import MenuItem from '../menu-item/MenuItem';
 
-import './directory.styles.scss';
+import './Directory.scss';
 
 class Directory extends React.Component {
   constructor() {
@@ -12,37 +12,37 @@ class Directory extends React.Component {
       sections: [
         {
           title: 'hats',
-          imageUrl: 'https://i.ibb.co/cvpntL1/hats.png',
+          imageUrl: '/images/hats.png',
           id: 1,
-          linkUrl: 'hats'
+          linkUrl: 'hats',
         },
         {
           title: 'jackets',
-          imageUrl: 'https://i.ibb.co/px2tCc3/jackets.png',
+          imageUrl: '/images/jackets.png',
           id: 2,
-          linkUrl: ''
+          linkUrl: '',
         },
         {
           title: 'sneakers',
-          imageUrl: 'https://i.ibb.co/0jqHpnp/sneakers.png',
+          imageUrl: '/images/sneakers.png',
           id: 3,
-          linkUrl: ''
+          linkUrl: '',
         },
         {
           title: 'womens',
-          imageUrl: 'https://i.ibb.co/GCCdy8t/womens.png',
+          imageUrl: '/images/womens.png',
           size: 'large',
           id: 4,
-          linkUrl: ''
+          linkUrl: '',
         },
         {
           title: 'mens',
-          imageUrl: 'https://i.ibb.co/R70vBrQ/men.png',
+          imageUrl: '/images/men.png',
           size: 'large',
           id: 5,
-          linkUrl: ''
-        }
-      ]
+          linkUrl: '',
+        },
+      ],
     };
   }
 

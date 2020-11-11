@@ -5,7 +5,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import RootReducer from './RootReducer';
 
-const middlewares = [logger];
+const middlewares = [];
+
+if (process.env.NODE_ENV === 'development') {
+  middlewares.push(logger);
+}
+
 export const store = createStore(
   RootReducer,
   composeWithDevTools(applyMiddleware(...middlewares))

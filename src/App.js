@@ -19,6 +19,7 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    //console.log(this.props);
     const { setCurrentUser } = this.props;
 
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
@@ -31,9 +32,12 @@ class App extends React.Component {
             ...snapShot.data(),
           });
         });
-      } else {
-        setCurrentUser(userAuth);
       }
+      setCurrentUser(userAuth);
+      // addCollectionAndDocuments(
+      //   'collections',
+      //   collectionsArray.map(({ title, items }) => ({ title, items }))
+      // );
     });
   }
 
@@ -68,6 +72,7 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
+  // collectionsArray: selectCollectionsForPreview(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

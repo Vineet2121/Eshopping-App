@@ -7,42 +7,19 @@ import CheckOutPage from './pages/checkout/CheckOutPage';
 
 import Header from './components/header/Header';
 import SignInAndSignUpPage from './pages/sign-in-and-sign-up-page/SignInAndSignUpPage';
-import { auth, createUserProfileDocument } from './firebase/FirebaseUtility';
-import { setCurrentUser } from './redux/user/UserAction';
+
 import { selectCurrentUser } from './redux/user/UserSelector';
+import { checkUserSession } from './redux/user/UserAction';
 
 import './App.css';
 
 import HomePage from './pages/homepage/HomePage';
 
 class App extends React.Component {
-  unsubscribeFromAuth = null;
-
   componentDidMount() {
-    //console.log(this.props);
-    const { setCurrentUser } = this.props;
+    const { checkUserSession } = this.props;
 
-    this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
-
-        userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
-        });
-      }
-      setCurrentUser(userAuth);
-      // addCollectionAndDocuments(
-      //   'collections',
-      //   collectionsArray.map(({ title, items }) => ({ title, items }))
-      // );
-    });
-  }
-
-  componentWillUnmount() {
-    this.unsubscribeFromAuth();
+    checkUserSession();
   }
 
   render() {
@@ -72,11 +49,10 @@ class App extends React.Component {
 
 const mapStateToProps = (state) => ({
   currentUser: selectCurrentUser(state),
-  // collectionsArray: selectCollectionsForPreview(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  setCurrentUser: (user) => dispatch(setCurrentUser(user)),
+  checkUserSession: () => dispatch(checkUserSession()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
